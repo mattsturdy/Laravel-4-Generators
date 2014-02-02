@@ -141,6 +141,11 @@ class FormDumperGenerator {
     {
         $table = Pluralizer::plural($model);
 
+        if ( !\Schema::hasTable($table))
+        {
+            $table = strtolower($table);
+        }
+
         return \DB::getDoctrineSchemaManager()->listTableDetails($table)->getColumns();
     }
 
